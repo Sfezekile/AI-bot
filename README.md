@@ -1,4 +1,4 @@
-# ChadAI
+# AI Bot
 
 A simple AI chat simulator built with HTML, CSS, and JavaScript. This project demonstrates a basic chat interface where users can send messages and receive simulated AI responses.
 
