@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI bot</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nav-bar.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet"/>
+    <style>
+      /* .prompt-container {
+        position: fixed;
+        bottom: 20px;
+        width: 100%;
+        padding: 16px 0;
+      }
+
+      .prompt-container :where(.prompt-wrapper, .prompt-form, .prompt-action) {
+        display: flex;
+        gap: 12px;
+        height: 56px;
+        align-items: center;
+      }
+
+      .prompt-wrapper .prompt-form {
+        width: 100%;
+        height: 100%;
+        border-radius: 130px;
+        background: linear-gradient(120deg, #3d3d3d 0%, #3d3d3d 25%, #333333 50%, #313131 100%);
+      }
+
+      .prompt-form .prompt-input {
+        height: 100%;
+        width: 100%;
+        background: none;
+        outline: none;
+        border: none;
+        font-size: 15px;
+        padding: 24px;
+        color: var(--text-primary);
+      }
+
+      .prompt-form .prompt-input::placeholder {
+        color: var(--text-mute);
+      }
+
+      .prompt-wrapper button {
+        width: 56px;
+        height: 100%;
+        border: none;
+        cursor: pointer;
+        border-radius: 50%;
+        font-size: 20px;
+        flex-shrink: 0;
+        color: var(--text-muted);
+        background: transparent;
+        transition: 0.3s ease;
+      }
+
+      .prompt-wrapper button:hover {
+        background: var(--text-muted);
+      }
+
+      .prompt-form .prompt-action {
+        gap: 5px;
+        margin-right: 7px;
+      }
+
+      .prompt-form .prompt-action button {
+        height: 45px;
+        width: 45px;
+      }
+
+      .prompt-form #send-prompt-btn {
+        color: var(--primary-color);
+        display: none;
+        background: var(--text-primary);
+      }
+
+      .prompt-form .prompt-input:valid ~ .prompt-action #send-prompt-btn {
+        display: block;
+      }
+
+      .prompt-form #send-prompt-btn:hover {
+        background: var(--blue);
+      } */
+    </style>
+</head>
+<body>
+    <nav id="sidebar">
+    
+      <!-- Toggle -->
+      <button class="toggle-btn" onclick="toggleNav()" title="Toggle sidebar">
+        <i class="ri-arrow-left-s-fill"></i>
+    </button>
+    
+      <!-- Header -->
+      <div class="nav-header">
+        <div class="logo-mark">
+            <i class="ri-bard-fill"></i>
+        </div>
+        <span class="logo-text">AI bot</span>
+    </div>
+    
+    <!-- Nav Body -->
+      <div class="nav-body">
+          
+        <div class="section-label">Action</div>
+          
+        <a class="nav-item active" href="#" data-tip="Dashboard">
+            <div class="item-icon-wrap">
+                <i class="ri-add-line"></i>
+            </div>
+            <span class="item-label">New chat</span>
+        </a>
+    
+        <a class="nav-item" href="#" data-tip="Analytics">
+          <div class="item-icon-wrap">
+            <i class="ri-search-line"></i>
+          </div>
+          <span class="item-label">Search</span>
+        </a>
+    
+        <a class="nav-item" href="#" data-tip="Projects">
+          <div class="item-icon-wrap">
+            <i class="ri-folder-line"></i>
+          </div>
+          <span class="item-label">Projects</span>
+          <span class="item-badge">New</span>
+        </a>
+    
+        
+        <div class="nav-divider"></div>
+        <div class="section-label">Chats</div>
+        
+        <a class="nav-item" href="#" data-tip="Messages">
+          <div class="item-icon-wrap">
+            <i class="ri-chat-3-line"></i>
+          </div>
+          <span class="item-label">Messages</span>
+          <span class="item-badge">4</span>
+        </a>
+    </div>
+
+    <div class="nav-divider"></div>
+    <div class="section-label">System</div>
+
+    <a class="nav-item" href="#" data-tip="Settings">
+      <div class="item-icon-wrap">
+        <i class="ri-settings-5-line"></i>
+      </div>
+      <span class="item-label">Settings</span>
+    </a>
+
+    <a class="nav-item" href="#" data-tip="Help">
+      <div class="item-icon-wrap">
+        <i class="ri-question-line"></i>
+      </div>
+      <span class="item-label">Help & Support</span>
+    </a>
+    
+      <!-- Footer -->
+      <div class="nav-footer">
+        <div class="user-card">
+          <div class="avatar">JD</div>
+          <div class="user-info">
+            <div class="user-name">Jamie Doss</div>
+            <div class="user-role">Admin · Pro</div>
+          </div>
+        </div>
+      </div>
+    
+    </nav>
+
+    <div class="container">
+        <div class="color1"></div>
+        <div class="color2"></div>
+        <div class="color3"></div>
+        <div class="color4"></div>
+        <div class="content">
+            <div class="logo">
+                <h2><i class="ri-bard-fill"></i>AI bot</h2>
+            </div>
+            <div class="title">Chat with your personal AI</div>
+            <div class="action" style="display: none;">
+                <div class="choice-button">
+                    <p class="member-btn">Early access for Arc Members</p>
+                    <button class="show-btn">Download AI bot</button>
+                </div>
+                <div class="options">
+                    <p>Not an Arc member? <a href="#">Join the waitlist<i class="ri-arrow-right-line"></i></a></p>
+                </div>
+            </div>
+
+            <div class="chats-container"></div>
+
+            <div class="prompt-container">
+              <div class="prompt-wrapper">
+                <form action="#" class="prompt-form">
+                  <input type="text" placeholder="Ask AI bot" class="prompt-input" required>
+                  <div class="prompt-action">
+                    <button id="add-file-btn" type="button"><i class="ri-add-line"></i></button>
+                    <button id="send-prompt-btn"><i class="ri-arrow-up-line"></i></button>
+                  </div>
+                </form>
+
+                <!-- <button id="theme-toggle-btn"><i class="ri-sun-line"></i></button>
+                <button id="delete-chats-btn"><i class="ri-delete-bin-5-line"></i></button> -->
+              </div>
+            </div>
+        </div>
+        <p class="disclaimer-text">AI bot can make mistakes, so double-check it.</p>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
